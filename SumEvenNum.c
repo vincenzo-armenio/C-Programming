@@ -8,7 +8,7 @@ int main(void){
   int sum = 0;
   int value;
 
-  printf("How many even numbers do you want to add?: \n");
+  printf("How many even numbers do you want to add?: ");
   scanf("%d",&value);
   
   for(i=0; i<value; i++)
