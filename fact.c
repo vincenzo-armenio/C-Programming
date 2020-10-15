@@ -1,4 +1,5 @@
 /* A simple C program for calculating the factorial */
+
 #include <stdio.h>
 int main(void){
   int fact = 1;
