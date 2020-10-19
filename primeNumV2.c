@@ -30,18 +30,20 @@ int number, div, flag;
   else if(!(number%div)) //even numbers are not prime
   flag = 0;
   
-  else for(div=3,flag=1; div<=sqrt(number);div=div+2)
+  else 
+    for(div=3,flag=1; div<=sqrt(number);div=div+2){
         if(!(number%div)){
         flag = 0;
         break;
         }
-        
-  if(flag)
+    }
+    
+  if(flag) //if flag = true
   printf("The number %d is prime\n", number);
   else 
   printf("The number %d is not prime\n", number);
   
-  }while(1);
+  }while(1); 
 
 
 return 0;
