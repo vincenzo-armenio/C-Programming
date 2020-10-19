@@ -27,16 +27,16 @@ int number, div, flag;
   
   if(number==2) //number 2 is prime
   flag = 1;
-  else if(!(number%div)) //even numbers are not prime
-  flag = 0;
+  else 
+    if(!(number%div)) //even numbers are not prime
+    flag = 0;
   
   else 
-    for(div=3,flag=1; div<=sqrt(number);div=div+2){
+    for(div=3,flag=1; div<=sqrt(number);div=div+2)
         if(!(number%div)){
         flag = 0;
         break;
         }
-    }
     
   if(flag) //if flag = true
   printf("The number %d is prime\n", number);
