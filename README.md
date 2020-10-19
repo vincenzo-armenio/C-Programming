@@ -1,2 +1,2 @@
 # C-Programming
-In this folder, you will find all the homework during the Programming 1 course.
+In this folder, you will find all tasks performed by me during the Programming 1 course.
