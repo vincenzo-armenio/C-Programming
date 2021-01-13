@@ -1,4 +1,4 @@
-//This program determines whether a number is first or not, before calculating this, check if the input is correct.
+//This program determines whether a number is prime or not, before calculating this, check if the input is correct.
 
 #include <stdio.h>
 #include <math.h>
