@@ -1,7 +1,6 @@
 /* La congettura di Goldbach afferma che "Ogni numero pari maggiore di 2 è somma di due numeri
 primi" /*
 
-
 #define INIZIO 22
 #define FINE 144
 
@@ -16,7 +15,6 @@ int main(void)
   printf("E' vero! Goldbach ha ragione\n ");
   else printf("No! Goldbach si sbaglia\n");
 }
-
 
 /*
 * Function: stampa_linea
