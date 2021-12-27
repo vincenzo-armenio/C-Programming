@@ -1,0 +1,101 @@
+/* Cerca una città in un archivio e la stampa, versione con allocazione
+dinamica di un campo del record */
+
+#include <stdio.h>
+#include <string.h>
+#define MAX 5
+
+typedef struct{
+
+//utilizziamo un puntatore per allocare dinamicamente lo spazio per il nome 
+char *nomeCity;
+int dim;
+
+}cityRec;
+
+//def. prototipi
+
+void leggi_city(char []);
+char * cerca_city(char *[], char *);
+void copyRec(char *, cityRec *);
+void stampa_rec(cityRec);
+cityRec copyRec1(char *string);
+void stampaRec(cityRec);
+
+int main(void){
+
+char *data_city[MAX] = {"Milano","Bologna","Napoli","Torino","Salerno"};
+
+char *ptrCity = NULL;
+
+//definisco un record di tipo cityRec
+cityRec new; 
+
+char city[20];
+
+	do{
+		
+		printf("Dammi una città(Q per uscire): ");
+		scanf("%s", city);
+
+		if(!strcmp(city,"Q"))
+			break;
+
+		ptrCity = cerca_city(data_city, city);
+		
+		if(ptrCity){
+			printf("La città %s è presente in archivio ed ha indirizzo %p \n", city, ptrCity);
+
+			//new viene passato per RIFERIMENTO, perchè deve essere modificato
+			copyRec(ptrCity, &new);
+	
+			//versione alternativa di copyRec dove non passiamo il record
+			new = copyRec1(ptrCity);
+
+			//il record viene passato per VALORE
+			stampaRec(new);
+		}
+	 	else
+			printf("La città non è presente in archivio. \n");
+	}while(1);
+
+return 0;
+}
+
+char * cerca_city(char **archivio, char *city){
+
+int i;
+	for(i=0;i<MAX;i++)
+		if(!strcmp(archivio[i] , city))
+			return archivio[i];
+
+return NULL;
+}
+
+
+void copyRec(char *string, cityRec *new){
+
+//allocazione dinamica del campo nome del record
+new->nomeCity = calloc(strlen(string), sizeof(char));
+strcpy(new->nomeCity, string);
+new->dim = strlen(string);
+  
+
+}
+
+cityRec copyRec1(char *string){
+//il record non viene passato quindi lo dichiaro dentro la funzione
+cityRec rec;
+
+//abbiamo a disposizione il record quindi usiamo l'accesso rec.nome
+strcpy(rec.nomeCity , string);
+rec.dim = strlen(string);
+
+//rec, quando la funzione termina muore, quindi lo restituiamo
+return rec;
+}
+
+
+void stampaRec(cityRec rec){
+	printf("Nome città: %s , dimensione %d \n", rec.nomeCity, rec.dim );
+}
