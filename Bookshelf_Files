@@ -1,0 +1,60 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+typedef struct {
+  char *titolo;
+  char *autore;
+  float prezzo;
+  int anno;
+
+}libro;
+
+//def. prototipi 
+void stampa(libro);
+
+int main(){
+
+	char linea[30];
+	libro *l , biblioteca[4];
+	int i = 0;
+
+	FILE *fp = fopen("file.txt","r");
+	if(!fp){
+		printf("Errore di apertura del file \n");
+		exit(0);
+	}
+
+	while(fgets(linea, 30, fp)!=NULL){
+		l = (libro *)malloc(sizeof(libro));
+		l->titolo = (char *) malloc(strlen(linea) * sizeof(char));
+    		strncpy(l->titolo, linea, strlen(linea)-2);
+
+    		fgets(linea, 30, fp);
+		l->autore = (char *) malloc(strlen(linea) * sizeof(char));
+		strncpy(l->autore, linea, strlen(linea)-2);
+
+		fgets(linea, 30, fp);
+		//atof: da alfanumerico a float 
+		l->prezzo = atof(linea);
+		//atoi: da alfanumerito a intero
+		fgets(linea, 30, fp);
+		l->anno = atoi(linea);
+
+		biblioteca[i] = *l;
+
+    		i++;
+   
+	}
+
+		for(i=i-1;i>=0;i--)
+			stampa(biblioteca[i]);
+
+return 0;
+}
+
+void stampa(libro l){
+	printf("%s - %s - %.2f - %d\n", l.titolo, l.autore, l.prezzo, l.anno);
+}
+
+
