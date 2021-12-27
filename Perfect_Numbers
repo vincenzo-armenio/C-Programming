@@ -1,0 +1,32 @@
+void perfectNumbers (int inf, int sup){
+	for(i=inf; i<=sup;i++) 
+	{
+	  if(checkPerfect(inf))
+          printf(" %3d ",inf);
+	}
+}
+
+int checkPerfect(int num){
+int i, sum=0;
+
+	for (i=1;i<num;i++)
+	  if (!(num%i))/*if(num%i==0)*/
+	  sum+=i;
+
+return (sum==num);
+}
+
+#include <stdio.h>
+void perfectNumbers (int inf, int sup);
+int checkPerfect (int num);
+
+int main(void){
+int inf, sup;
+printf("Questo Programma determina i numeri perfetti in un intervallo\n\n");
+printf("---------------------------------------\n\n");
+
+ printf("Inserisci il limite inferiore e il limite superiore\n");
+ scanf("%d %d", &inf, &sup);
+ printf("\n I numeri perfetti fra %d e %d sono: \n", inf, sup);
+ perfectNumbers(inf,sup);
+}
