@@ -1,0 +1,67 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define MAX 5
+
+//def prototipi
+void riempi(int **);
+void stampa(int **);
+
+int main(void){
+
+//dichiarazione di un array di puntatori
+int *A[MAX];
+//variabile n che conterrà la lunghezza della riga
+int n;
+
+for(int i=0; i<MAX; i++){
+
+	printf("lunghezza riga %d:",i);
+	scanf("%d", &n);
+
+	//alloco spazio di memoria per A
+	A[i] = malloc(n+1 * sizeof(int));
+	
+	//controllo che l'allocazione sia andata a buon fine	
+	if(A[i]==NULL){
+		printf("Spazio di memoria esaurito. \n");
+		exit(0);
+	}
+	//A[i] rappresenta l'indirizzo base A[0] rappresenta l'offset(la posizione)
+	A[i][0] = n;
+}
+
+	riempi(A);
+	stampa(A);
+
+return 0;
+}
+
+void riempi(int **A){
+
+//primo for scansione delle righe
+for(int i=0;i<MAX;i++){
+	printf("Inserire riga %d \n", i);
+
+//secondo for scansione colonne, partiamo da 1 perchè la prima è già occupata da n 
+	for(int j=1; j<=A[i][0];j++){
+		printf("dammi un valore: ");
+		scanf("%d", &A[i][j]);
+
+	}
+}
+}
+
+
+void stampa(int **A){
+
+	for(int i=0;i<MAX;i++){
+		printf("\n");	
+	/*stampiamo solo i valori inseriti dall'utente e 
+	non il numero n che è stato inserito nella prima posizione */						
+		for(int j=1;j<=A[i][0]; j++) 
+			printf("%d\t", A[i][j]);
+		
+	}
+	printf("\n");
+
+}
