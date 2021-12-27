@@ -1,0 +1,44 @@
+/*Chiede l'inserimento di una stringa di max 99 caratteri 
+Effettua una concatenazione tra una stringa preesistente e 
+una inserita dall'utente ne crea una concatenata 
+allocando lo spazio necessario per la nuova stringa
+e poi restituisce le lunghezze delle stringhe*/
+
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+//def. prototipi
+char* concatena(char *, char *, int *, int *); 
+
+int main(void){
+
+char string1[] = "Michele";
+char stringa[100];
+char *newVect;
+
+int dimNewVect, dimVectInput = 0;
+
+printf("Dammi una stringa(max 99 char): ");
+scanf("%s", stringa);
+
+newVect = concatena(string1, stringa, &dimNewVect, &dimVectInput);
+
+printf("Le stringhe %s e %s concatenate originano la stringa %s che è lunga %d, mentre la seconda è lunga %d \n", string1, stringa, newVect, dimNewVect, dimVectInput);
+return 0;
+}
+
+char* concatena(char v1[], char v2[], int *dimNew, int *dim){
+
+char *v3;
+v3 = calloc(strlen(v1)+strlen(v2)+1, + sizeof(char));
+//strcpy copia dentro v3 la stringa v1 
+strcpy(v3, v1); 
+//concatena v2 a v3 
+strcat(v3,v2);
+*dim = strlen(v2);
+*dimNew = strlen(v3);
+
+return v3;
+
+}
