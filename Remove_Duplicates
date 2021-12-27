@@ -1,0 +1,39 @@
+#include <stdio.h>
+#include <string.h>
+
+#define MAX_LENGHT 101
+void leggi_caratteri(char []);
+void rimuovi_duplicati(char [], char []);
+
+int main(void){
+
+char str_a[MAX_LENGHT] = "";
+char str_b[MAX_LENGHT] = "";
+
+leggi_caratteri(str_a);
+
+rimuovi_duplicati(str_a, str_b);
+
+fputs(str_b, stdout);
+
+return 0;
+}
+
+void leggi_caratteri(char a[]){
+	printf("Dammi una stringa max 100 char: \n");
+	fgets(a,MAX_LENGHT,stdin);
+}
+
+void rimuovi_duplicati(char a[], char b[]){
+
+	//due indici i scorre a, count scorre b
+	for(int i=0, count = 0; i<strlen(a); i++){
+		/*strchr ricerca nella stringa b il carattere a[i], 
+			se lo trova restituisce la posizione nella stringa 
+			altrimenti restituisce NULL*/
+		if(strchr(b, a[i])==NULL){
+			b[count] = a[i];
+			count++;
+		}
+	}
+}
