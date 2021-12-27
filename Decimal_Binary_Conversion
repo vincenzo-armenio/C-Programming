@@ -1,0 +1,33 @@
+#include <stdio.h>
+#define MAX_LENGHT 20
+
+//prototipo della funzione
+int conversione (char [], int);
+
+int main(void){
+
+ char str[MAX_LENGHT];
+ int n, l;
+ 
+ printf("Inserisci un numero decimale > 0\n");
+ scanf("%d", &n);
+
+ l = conversione(str, n);
+
+ for(l; l>=0; l--)
+  printf("%d", str[l]);
+
+ printf("\n");
+ 
+
+return 0;
+
+}
+
+int conversione (char str[], int n){
+int i = 0;
+ for(i=0; n>0; i++, n/=2)
+  str[i] = n%2;
+ 
+return i - 1;
+}
